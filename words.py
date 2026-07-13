@@ -1,9 +1,9 @@
-five_letter_words = [
-    "latte", "Horny", "Choke", "Apple", "Chunk", "Shake", "Funky", "Verbs", 
-    "April", "Apple", "Grape", "Fruit", "Mango", "Idiot", "Circa", "Cobra", 
-    "Cocoa", "Comma", "Delta", "Dogma", "Drama", "Enema", "Extra", "Fauna", 
-    "Fella", "Flora", "Gamma", "Gonna", "Gotta", "Guava", "Hydra", "Hyena", 
-    "junta", "kappa", "karma", "Kinda", "koala", "larva", "llama", 
+five_letter_words =[
+    "latte", "horny", "choke", "apple", "chunk", "shake", "Funky", "Verbs", 
+    "april", "apple", "grape", "fruit", "mango", "idiot", "Circa", "Cobra", 
+    "cocoa", "comma", "delta", "dogma", "drama", "enema", "Extra", "Fauna", 
+    "fella", "flora", "gamma", "gonna", "gotta", "guava", "Hydra", "Hyena", 
+    "junta", "kappa", "karma", "kinda", "koala", "larva", "llama", 
     "magma", "magna", "mamma", "manga", "mania", "mecca", "media", "mocha", 
     "momma", "ninja", "omega", "opera", "outta", "panda", "parka", "pasha", 
     "pasta", "pizza", "playa", "plaza", "polka", "prima", "quota", "rumba", 
