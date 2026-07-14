@@ -17,24 +17,33 @@ backgroundimg = pygame.image.load("background.png")
 startbutton = pygame.image.load("start_button.png")
 titletext = pygame.image.load("titletext.png")
 c=[0,0,0,0,0]
-l=["     ","     ","     ","     ","     "]
+l=["     ","     ","     ","     ","     ","     "]
 input_word = []
 font = pygame.font.SysFont("Arial", 45)
 word = random.choice(words.five_letter_words)
 mousex,mousey=pygame.mouse.get_pos()
 running=True
+def button(buttonx,buttony,buttonscalex,buttonscaley,buttonimage,isdraw):
+    if isdraw:
+        screen.blit(pygame.transform.scale(buttonimage, (buttonscalex, buttonscaley)),(buttonx,buttony)) 
+    if event.type == pygame.MOUSEBUTTONDOWN and buttonx<mousex and mousey<buttonx+buttonscalex and buttony<mousey and mousey<buttony+buttonscaley:
+        return(True)
+
+
 while running:
 
     screen_width = screen.get_width()
     screen_hight = screen.get_height()
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN and screen_width/2-125<mousex and mousex<250+screen_width/2-125 and screen_hight/2<mousey and mousey<100+screen_hight/2:
+        if button(screen_width/2-125,screen_hight/2,250,100,startbutton,True):
             running = False
+        elif event.type == pygame.QUIT: 
+            pygame.quit()
+            sys.exit()
 
     screen.fill(background_color)
-    screen.blit(backgroundimg,(-100,50))
     mousex,mousey=pygame.mouse.get_pos()
-    screen.blit(pygame.transform.scale(startbutton, (250, 100)),(screen_width/2-125,screen_hight/2)) 
+    screen.blit(pygame.transform.scale(backgroundimg, (screen_width*2, screen_hight*2)),(-100,-100)) 
     screen.blit(pygame.transform.scale(titletext, (800, 1000)),(screen_width/2-400,-350))
     pygame.display.flip()
 print(word)
@@ -45,7 +54,7 @@ while a < 6:
     screen_hight = screen.get_height()
     pygame.display.flip()
     screen.fill((50,80,50))
-    screen.blit(backgroundimg,(-100,50))
+    screen.blit(pygame.transform.scale(backgroundimg,(screen_width*2,screen_hight*2)),(-100,-100))
     a1=0
     for y in l:
         b=0
@@ -74,6 +83,9 @@ while a < 6:
                 input_word = input_word[:-1]
             elif len(input_word) < 5:
                 input_word.append(event.unicode)
+        elif event.type == pygame.QUIT: 
+            pygame.quit()
+            sys.exit()
     b=0
     for x in input_word:
         pygame.draw.rect(screen, (100, 100, 100), (screen_width/10 * b+screen_width/4, screen_hight/6 * a, 45, 45), 2)
