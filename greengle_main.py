@@ -28,13 +28,14 @@ while running:
     screen_width = screen.get_width()
     screen_hight = screen.get_height()
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN and screen_width/2-125<mousex and mousex<250+screen_width/2-125 and screen_hight/2<mousey and mousey<100+screen_hight/2:
             running = False
 
     screen.fill(background_color)
-    screen.blit(backgroundimg,(-100,-100))
-    screen.blit(pygame.transform.scale(startbutton, (250, 100)),(screen_width/2-125,screen_hight/2))
-    screen.blit(pygame.transform.scale(titletext, (800, 1000)),(screen_width/2-400,0-screen_hight/2))
+    screen.blit(backgroundimg,(-100,50))
+    mousex,mousey=pygame.mouse.get_pos()
+    screen.blit(pygame.transform.scale(startbutton, (250, 100)),(screen_width/2-125,screen_hight/2)) 
+    screen.blit(pygame.transform.scale(titletext, (800, 1000)),(screen_width/2-400,-350))
     pygame.display.flip()
 print(word)
 clock = pygame.time.Clock()
@@ -44,7 +45,7 @@ while a < 6:
     screen_hight = screen.get_height()
     pygame.display.flip()
     screen.fill((50,80,50))
-    screen.blit(backgroundimg,(-100,0))
+    screen.blit(backgroundimg,(-100,50))
     a1=0
     for y in l:
         b=0
