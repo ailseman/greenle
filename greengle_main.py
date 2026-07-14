@@ -2,6 +2,10 @@ import words
 import random
 import pygame
 import sys
+from images import imageworker
+startbutton = imageworker.startbutton
+backgroundimg = imageworker.backgroundimg
+titletext = imageworker.titletext
 pygame.init()
 pygame.font.init()
 screen = pygame.display.set_mode((800, 600), pygame.RESIZABLE)
@@ -13,9 +17,6 @@ screen.fill(background_color)
 a=0
 a1=0
 b=0
-backgroundimg = pygame.image.load("background.png")
-startbutton = pygame.image.load("start_button.png")
-titletext = pygame.image.load("titletext.png")
 c=[0,0,0,0,0]
 l=["     ","     ","     ","     ","     ","     "]
 input_word = []
@@ -24,9 +25,9 @@ word = random.choice(words.five_letter_words)
 mousex,mousey=pygame.mouse.get_pos()
 running=True
 def button(buttonx,buttony,buttonscalex,buttonscaley,buttonimage,isdraw):
-    if isdraw:
+    if isdraw == True:
         screen.blit(pygame.transform.scale(buttonimage, (buttonscalex, buttonscaley)),(buttonx,buttony)) 
-    if event.type == pygame.MOUSEBUTTONDOWN and buttonx<mousex and mousey<buttonx+buttonscalex and buttony<mousey and mousey<buttony+buttonscaley:
+    if event.type == pygame.MOUSEBUTTONDOWN and buttonx<mousex and mousex<buttonx+buttonscalex and buttony<mousey and mousey<buttony+buttonscaley:
         return(True)
 
 
@@ -35,15 +36,15 @@ while running:
     screen_width = screen.get_width()
     screen_hight = screen.get_height()
     for event in pygame.event.get():
+        screen.fill(background_color)
+        screen.blit(pygame.transform.scale(backgroundimg, (screen_width*2, screen_hight*2)),(-100,-100))
         if button(screen_width/2-125,screen_hight/2,250,100,startbutton,True):
             running = False
         elif event.type == pygame.QUIT: 
             pygame.quit()
             sys.exit()
 
-    screen.fill(background_color)
     mousex,mousey=pygame.mouse.get_pos()
-    screen.blit(pygame.transform.scale(backgroundimg, (screen_width*2, screen_hight*2)),(-100,-100)) 
     screen.blit(pygame.transform.scale(titletext, (800, 1000)),(screen_width/2-400,-350))
     pygame.display.flip()
 print(word)
