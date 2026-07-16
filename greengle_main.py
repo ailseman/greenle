@@ -25,7 +25,8 @@ b=0
 c=[0,0,0,0,0]
 l=["     ","     ","     ","     ","     ","     "]
 input_word = []
-font = pygame.font.SysFont("Arial", 45)
+font = pygame.font.SysFont("Arial", int((screen_hight+screen_width)/30))
+font1 = pygame.font.SysFont("Arial", int((screen_hight+screen_width)/5))
 word = random.choice(words.five_letter_words)
 mousex,mousey=pygame.mouse.get_pos()
 running=True
@@ -119,11 +120,12 @@ while running:
                         print("Congratulations! You guessed the word correctly.")
                         won = True
                         a = 10
-                    input_word = []
-                    a+=1
-                    if mode == 2:
-                        word = random.choice(words.five_letter_words)
-                        print(word)
+                    else:
+                        input_word = []
+                        a+=1
+                        if mode == 2:
+                            word = random.choice(words.five_letter_words)
+                            print(word)
                 elif event.key == pygame.K_BACKSPACE:
                     input_word = input_word[:-1]
                 elif len(input_word) < 5:
@@ -142,18 +144,29 @@ while running:
             a = 10
         clock.tick(60)
     runningwinloose = True
-    while runningwinloose:
+    while runningwinloose == True:
+        screen_width = screen.get_width()
+        screen_hight = screen.get_height()
         for event in pygame.event.get():
-            if event.type == pygame.K_RETURN:
-                runningwinloose = False
-            elif event.type == pygame.QUIT: 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    runningwinloose = False
+            if event.type == pygame.QUIT: 
                 pygame.quit()
                 sys.exit()
             if won:
                 screen.fill((0,255,0))
+                wintext = font1.render("you won", True, (0,0,0))
+                screen.blit(wintext, wintext.get_rect(center=(screen_width/2, screen_hight/2)))
+                loosetext = font.render(f"the word was {word}", True, (0, 0, 0))
+                screen.blit(loosetext, loosetext.get_rect(center=(screen_width/2, screen_hight/8)))
                 pygame.display.flip()
             else:
                 screen.fill((255,0,0))
+                loosetext = font1.render("you lost", True, (0, 0, 0))
+                screen.blit(loosetext, loosetext.get_rect(center=(screen_width/2, screen_hight/2)))
+                loosetext = font.render(f"the word was {word}", True, (0, 0, 0))
+                screen.blit(loosetext, loosetext.get_rect(center=(screen_width/2, screen_hight/8)))
                 pygame.display.flip()
         clock.tick(60)
     a=0
